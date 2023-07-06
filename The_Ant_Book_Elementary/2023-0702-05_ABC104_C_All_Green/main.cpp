@@ -4,13 +4,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void sub2 (const vector<int> &nump, const vector<int> &bonus, const int &D,
-           const int &G, vector<int> solved, int &maxval) {
+void evaluation (const vector<int> &nump, const vector<int> &bonus, 
+                const int &D, const int &G, 
+                vector<int> vcontainer, int &maxval) {
   int points = 0, counts = 0;
   for (int i = 0; i < D; ++i) {
-    counts += solved.at (i);
-    points += (i + 1) * 100 * solved.at (i);
-    if (solved.at (i) == nump.at (i)) {
+    counts += vcontainer.at (i);
+    points += (i + 1) * 100 * vcontainer.at (i);
+    if (vcontainer.at (i) == nump.at (i)) {
       points += bonus.at (i);
     }
   }
@@ -18,37 +19,31 @@ void sub2 (const vector<int> &nump, const vector<int> &bonus, const int &D,
     if (counts < maxval) {
       maxval = counts;
     }
-/*
-    for (int i = 0; i < D; ++i) {
-      cout << solved.at (i) << ", ";
-    }
-    cout << endl;
-    cout << "point=" << points << ", counts=" << counts << endl;
-*/
   }
 }
 
-void sub (const vector<int> &nump, const vector<int> &bonus, const int &D,
-          const int &G, int l, vector<int> solved, int &maxval) {
-  if (l == D) {
-    sub2 (nump, bonus, D, G, solved, maxval);
+void build_vcontainer (const vector<int> &nump, const vector<int> &bonus, 
+                       const int &D, const int &G, 
+                       int level, vector<int> vcontainer, int &maxval) {
+  if (level == D) {
+    evaluation(nump, bonus, D, G, vcontainer, maxval);
     return;
   }
-  for (int i = 0; i < nump.at (l) + 1; ++i) {
-    vector<int> tmp = solved;
+  for (int i = 0; i < nump.at (level) + 1; ++i) {
+    vector<int> tmp = vcontainer;
     tmp.push_back (i);
-    sub (nump, bonus, D, G, l + 1, tmp, maxval);
+    build_vcontainer (nump, bonus, D, G, level + 1, tmp, maxval);
   }
 }
 
 int main () {
   int D, G;
   cin >> D >> G;
-  vector<int> nump (D), bonus (D), solved;
+  vector<int> nump (D), bonus (D), vcontainer;
   for (int i = 0; i < D; ++i) {
     cin >> nump.at (i) >> bonus.at (i);
   }
   int maxval = accumulate (nump.begin (), nump.end (), 0);
-  sub (nump, bonus, D, G, 0, solved, maxval);
+  build_vcontainer (nump, bonus, D, G, 0, vcontainer, maxval);
   cout << maxval << endl;
 }
