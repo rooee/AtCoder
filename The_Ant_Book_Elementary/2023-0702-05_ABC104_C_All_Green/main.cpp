@@ -31,7 +31,7 @@ void build_vcontainer (const vector<int> &nump, const vector<int> &bonus,
   }
   for (int i = 0; i < nump.at (level) + 1; ++i) {
     vector<int> tmp = vcontainer;
-    tmp.push_back (i);
+    tmp.at(level)=i;
     build_vcontainer (nump, bonus, D, G, level + 1, tmp, maxval);
   }
 }
@@ -39,7 +39,7 @@ void build_vcontainer (const vector<int> &nump, const vector<int> &bonus,
 int main () {
   int D, G;
   cin >> D >> G;
-  vector<int> nump (D), bonus (D), vcontainer;
+  vector<int> nump (D), bonus (D), vcontainer(D);
   for (int i = 0; i < D; ++i) {
     cin >> nump.at (i) >> bonus.at (i);
   }
