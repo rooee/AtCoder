@@ -1,6 +1,6 @@
 // https://atcoder.jp/contests/abc104/tasks/abc104_c
 // https://qiita.com/drken/items/e77685614f3c6bf86f44
-// https://atcoder.jp/contests/abc104/submissions/43330580
+// https://atcoder.jp/contests/abc104/submissions/43330580 (AC0)
 
 #include <bits/stdc++.h>
 using namespace std;
