@@ -17,7 +17,7 @@ int main () {
     cout << A.at(i) << ", ";
   }
   cout << endl;
-*/
+
   int min=0, max=N-1;
   while(1){
     if (A.at((min+max)/2)<X){
@@ -29,5 +29,22 @@ int main () {
     }
   }
   cout << (min+max)/2+1 << endl;
+*/
+
+  int min=0, max=N-1, n, x;
+  while(1){
+    n=(min+max)/2;
+    x=A.at(n);
+    if (x<X){
+      min=n+1;
+    } else if (x>X){
+      max=n-1;
+    } else {
+      break;
+    }
+  }
+  cout << n+1 << endl;
+
+
 }
 
