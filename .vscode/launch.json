@@ -5,7 +5,7 @@
         "type": "cppdbg",
         "request": "launch",
         "program": "${fileDirname}/a.out",
-        "args": ["<", "${fileDirname}/sample.in"],
+        "args": ["<", "${fileDirname}/test/sample-1.in"],
         "stopAtEntry": false,
         "cwd": "${fileDirname}",
         "environment": [],
