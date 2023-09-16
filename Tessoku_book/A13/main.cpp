@@ -17,8 +17,14 @@ int main () {
 
   for (int i=0;i<N;++i){
     for (int j=i+1;j<N;++j){
-      if (abs(A.at(i)-A.at(j))<=K){
-        ++ct;
+      if (A.at(i)-A.at(j)>=0){
+        if (A.at(i)-A.at(j)<=K){
+          ++ct;
+        }
+      } else {
+        if (A.at(j)-A.at(i)<=K){
+          ++ct;
+        }
       }
     }
   }
