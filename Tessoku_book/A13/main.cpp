@@ -16,10 +16,12 @@ int main () {
   int ct=0;
 
   for (int i=0;i<N;++i){
-    int a=A.at(i);
     for (int j=i+1;j<N;++j){
-      if (abs(a-A.at(j))<=K){
+      cout << i << "," << j << endl;
+      if (A.at(j)-A.at(i)<=K){
         ++ct;
+      } else {
+        break;
       }
     }
   }
