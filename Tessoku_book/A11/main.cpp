@@ -3,6 +3,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool isok(int m,  vector<int> &mat, int &N, int &X){
+  if (m<0) return true;
+  if (N-1<m) return false;
+  if (mat.at(m)<=X) return true;
+  return false;
+}
+
 int main () {
 
   int N, X;
@@ -12,38 +19,17 @@ int main () {
   for (int i=0;i<N;++i){
     cin >> A.at(i);
   }
-/*
-  for (int i=0;i<N;++i){
-    cout << A.at(i) << ", ";
-  }
-  cout << endl;
 
-  int min=0, max=N-1;
-  while(1){
-    if (A.at((min+max)/2)<X){
-      min=(min+max)/2;
-    } else if (A.at((min+max)/2)>X){
-      max=(min+max)/2;
+  int ok=-1, ng=N;
+  while(ng-ok>1){
+    int mid=(ok+ng)/2;
+    if (isok(mid, A, N, X)){
+      ok=mid;
     } else {
-      break;
+      ng=mid;
     }
   }
-  cout << (min+max)/2+1 << endl;
-*/
-
-  int min=0, max=N-1, n, x;
-  while(1){
-    n=(min+max)/2;
-    x=A.at(n);
-    if (x<X){
-      min=n+1;
-    } else if (x>X){
-      max=n-1;
-    } else {
-      break;
-    }
-  }
-  cout << n+1 << endl;
+  cout << ok+1 << endl;
 
 
 }
